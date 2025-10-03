@@ -11,17 +11,6 @@ Since your frontend is already deployed elsewhere, here's the configuration for 
 - **Auto Deploy:** Yes
 - **Service Type:** Web Service
 
-**Environment Variables:**
-```
-NODE_ENV=production
-MONGO_URI=mongodb+srv://swayam123code_db_user:uOBrSMsc7bhBcnQz@cluster3.oxqwdd1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster3
-SECRET_KEY=8ac78791b1bc867d05409e6bcc627a92d7c2d3f0c7cf6b329c13993591add47fffe2553a02c473f7db1e714d7541ecd0716d804285e51c7a0261bacdf4acceb0
-CLOUD_NAME=dmeabd0vm
-API_KEY=632685119924612
-API_SECRET=uNrzR0igvfoRsVbvTuxDM0SKCP0
-PORT=10000
-```
-
 ## Frontend Integration
 
 Since your frontend is already deployed, make sure to update your frontend's API base URL to point to your new Render backend:
@@ -51,17 +40,36 @@ app.use(cors({
 ✅ **Simple**: Clean separation of concerns  
 ✅ **Free Tier**: Efficient use of Render's free plan  
 
+**Environment Variables (Add these in Render dashboard):**
+```
+NODE_ENV=production
+MONGO_URI=<your-mongodb-atlas-connection-string>
+SECRET_KEY=<your-jwt-secret-key>
+CLOUD_NAME=<your-cloudinary-cloud-name>
+API_KEY=<your-cloudinary-api-key>
+API_SECRET=<your-cloudinary-api-secret>
+PORT=10000
+```
+
 ## Deploy Steps
 
 1. Go to [Render.com](https://render.com)
 2. Connect your GitHub repo: `Parthasarathirout/JobHunt`
 3. Choose "Web Service"
 4. Use build/start commands above
-5. Add environment variables
+5. Add environment variables from your local `.env` file
 6. Deploy! 🚀
+
+## Security Notes
+
+⚠️ **IMPORTANT**: Never commit real environment variables to your repository!
+- Use the `.env.example` template file
+- Add actual values only in Render's environment variables dashboard
+- Keep your `.env` file in `.gitignore`
 
 ## After Deployment
 
 - Your API will be available at: `https://your-service-name.onrender.com`
-- Update your frontend to use this URL
+- Update your frontend to use this URL  
 - Test API endpoints to ensure everything works
+- Rotate any exposed credentials if needed
