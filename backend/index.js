@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'http://localhost:5173',
+    origin: [process.env.FRONTEND_URL || 'http://localhost:5173', 'https://job-hunt-puce.vercel.app/'],
     credentials:true
 }
 
@@ -32,7 +32,12 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-
+app.get("/", (req, res) => {
+    return res.status(200).json({
+        message: "Welcome to JobHunt Backend API!",
+        success: true,
+    });
+});
 
 app.listen(PORT,()=>{
     connectDB();
