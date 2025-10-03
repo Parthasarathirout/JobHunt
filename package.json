@@ -4,9 +4,9 @@
   "description": "JobHunt - A modern full-stack job portal platform built with MERN stack",
   "main": "backend/index.js",
   "scripts": {
-    "dev": "cd backend && npm run start",
     "build": "cd backend && npm install",
-    "start": "cd backend && npm run start",
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
     "backend:install": "cd backend && npm install",
     "backend:dev": "cd backend && npm run dev",
     "backend:start": "cd backend && npm start"
