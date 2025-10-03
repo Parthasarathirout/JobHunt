@@ -11,6 +11,7 @@ Since your frontend is already deployed elsewhere, here's the configuration for 
 - **Auto Deploy:** Yes
 - **Service Type:** Web Service
 - **Node Version:** 18.x or higher
+- **Root Directory:** `backend` (This is the key change)
 
 ## Frontend Integration
 
@@ -57,18 +58,20 @@ PORT=10000
 1. Go to [Render.com](https://render.com)
 2. Connect your GitHub repo: `Parthasarathirout/JobHunt`
 3. Choose "Web Service"
-4. **IMPORTANT**: Set these commands exactly:
-   - **Build Command**: `npm run build`
-   - **Start Command**: `npm start`
+4. **IMPORTANT**: Set these commands and settings exactly:
+   - **Root Directory**: `backend`
+   - **Build Command**: `npm install`
+   - **Start Command**: `node index.js`
 5. Add environment variables from your local `.env` file
 6. Deploy! 🚀
 
 ## Troubleshooting
 
 **If you see "Cannot find package 'express'" error:**
-- Make sure Build Command is set to `npm run build` (not `cd backend && npm install`)
-- Make sure Start Command is set to `npm start` (not `npm run dev`)
-- The root package.json handles the backend directory navigation
+- Make sure **Root Directory** is set to `backend`
+- Make sure Build Command is set to `npm install`
+- Make sure Start Command is set to `node index.js`
+- This tells Render to run commands from the backend folder directly
 
 ## Security Notes
 
