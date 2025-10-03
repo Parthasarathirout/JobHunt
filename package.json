@@ -5,11 +5,8 @@
   "main": "backend/index.js",
   "scripts": {
     "build": "cd backend && npm install",
-    "start": "node --watch backend/index.js",
-    "dev": "cd backend && npm run dev",
-    "backend:install": "cd backend && npm install",
-    "backend:dev": "cd backend && npm run dev",
-    "backend:start": "cd backend && npm start"
+    "start": "cd backend && node index.js",
+    "dev": "cd backend && npm run dev"
   },
   "keywords": [
     "jobhunt",
