@@ -1,0 +1,45 @@
+{
+  "name": "jobhunt-fullstack",
+  "version": "1.0.0",
+  "description": "JobHunt - A modern full-stack job portal platform built with MERN stack",
+  "main": "backend/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "cd backend && npm start",
+    "install-dependencies": "cd backend && npm install && cd ../frontend && npm install",
+    "backend:install": "cd backend && npm install",
+    "frontend:install": "cd frontend && npm install",
+    "backend:dev": "cd backend && npm run dev",
+    "frontend:dev": "cd frontend && npm run dev",
+    "backend:start": "cd backend && npm start",
+    "frontend:build": "cd frontend && npm run build",
+    "frontend:preview": "cd frontend && npm run preview"
+  },
+  "keywords": [
+    "jobhunt",
+    "job-portal",
+    "mern-stack",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express",
+    "tailwind",
+    "framer-motion"
+  ],
+  "author": "Parthasarathirout <psrout10@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Parthasarathirout/JobHunt.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
