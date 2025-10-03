@@ -5,6 +5,9 @@ import { singleUpload } from "../middlewares/mutler.js";
 
 const router = express.Router();
 
+router.route("/").get((req, res) => {
+    res.status(200).json({ message: "Company route is working!" });
+});
 router.route("/register").post(isAuthenticated,registerCompany);
 router.route("/get").get(isAuthenticated,getCompany);
 router.route("/get/:id").get(isAuthenticated,getCompanyById);

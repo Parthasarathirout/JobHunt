@@ -4,6 +4,9 @@ import { getAdminJobs, getAllJobs, getJobById, postJob } from "../controllers/jo
 
 const router = express.Router();
 
+router.route("/").get((req, res) => {
+    res.status(200).json({ message: "Job route is working!" });
+});
 router.route("/post").post(isAuthenticated, postJob);
 router.route("/get").get(getAllJobs); // Public - no auth required
 router.route("/getadminjobs").get(isAuthenticated, getAdminJobs);
