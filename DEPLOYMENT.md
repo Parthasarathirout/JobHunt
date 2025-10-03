@@ -1,49 +1,67 @@
-# 🚀 Deployment Guide - Render.com
+# 🚀 Backend API Deployment - Render.com
 
-## Quick Setup (Recommended)
+## Backend-Only Deployment
 
-Since you're already using **MongoDB Atlas** and **Cloudinary**, here's the simplest deployment approach:
-
-### Option 1: Backend-Only Deployment (Easiest)
-
-Deploy just the backend API and serve frontend from there:
+Since your frontend is already deployed elsewhere, here's the configuration for deploying just the backend API:
 
 **Render Settings:**
 - **Repository:** `https://github.com/Parthasarathirout/JobHunt.git`
-- **Build Command:** `cd backend ; npm install`  
-- **Start Command:** `cd backend ; npm start`
+- **Build Command:** `cd backend && npm install`  
+- **Start Command:** `cd backend && npm start`
 - **Auto Deploy:** Yes
+- **Service Type:** Web Service
 
-### Option 2: Separate Frontend & Backend
+**Environment Variables:**
+```
+NODE_ENV=production
+MONGO_URI=mongodb+srv://swayam123code_db_user:uOBrSMsc7bhBcnQz@cluster3.oxqwdd1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster3
+SECRET_KEY=8ac78791b1bc867d05409e6bcc627a92d7c2d3f0c7cf6b329c13993591add47fffe2553a02c473f7db1e714d7541ecd0716d804285e51c7a0261bacdf4acceb0
+CLOUD_NAME=dmeabd0vm
+API_KEY=632685119924612
+API_SECRET=uNrzR0igvfoRsVbvTuxDM0SKCP0
+PORT=10000
+```
 
-**Backend Service:**
-- Build: `cd backend ; npm install`
-- Start: `cd backend ; npm start`
-- Add same environment variables as above
+## Frontend Integration
 
-**Frontend Service (Static Site):**
-- Build: `cd frontend ; npm install ; npm run build`
-- Publish: `frontend/dist`
-- Environment: `VITE_API_URL=https://your-backend-url.onrender.com`
+Since your frontend is already deployed, make sure to update your frontend's API base URL to point to your new Render backend:
+
+```javascript
+// In your frontend constants or config
+const API_BASE_URL = 'https://your-backend-name.onrender.com';
+```
+
+## CORS Configuration
+
+You may need to update your backend's CORS settings to allow requests from your frontend domain:
+
+```javascript
+// In backend/index.js
+app.use(cors({
+  origin: ['https://your-frontend-domain.com', 'http://localhost:5173'],
+  credentials: true
+}));
+```
 
 ## Why This Setup?
 
-✅ **MongoDB Atlas**: You're already using it - no need for Render's database  
-✅ **Cloudinary**: You're already configured - no additional setup needed  
-✅ **Simple**: Just point Render to your existing services  
-✅ **Free Tier**: Works perfectly with Render's free plan  
+✅ **Backend Only**: Focus on API deployment since frontend is handled elsewhere  
+✅ **MongoDB Atlas**: Uses your existing database  
+✅ **Cloudinary**: Uses your existing file storage  
+✅ **Simple**: Clean separation of concerns  
+✅ **Free Tier**: Efficient use of Render's free plan  
 
-## Current Error Fix
-
-The error you saw happens because Render expected a `package.json` in the root. Now you have:
-- ✅ Root `package.json` with proper scripts
-- ✅ Backend `package.json` with `npm start` script  
-- ✅ Existing MongoDB Atlas & Cloudinary setup
-
-## Deploy Now
+## Deploy Steps
 
 1. Go to [Render.com](https://render.com)
 2. Connect your GitHub repo: `Parthasarathirout/JobHunt`
 3. Choose "Web Service"
-4. Use the settings above
-5. Deploy! 🚀
+4. Use build/start commands above
+5. Add environment variables
+6. Deploy! 🚀
+
+## After Deployment
+
+- Your API will be available at: `https://your-service-name.onrender.com`
+- Update your frontend to use this URL
+- Test API endpoints to ensure everything works
